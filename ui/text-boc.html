@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link href="http://onesignal.github.io/emoji-picker/lib/css/emoji.css" rel="stylesheet"
+        type="text/css">
+    <title>Meu Portal </title>
+</head>
+
+<style>
+.full-width {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+.full-width .justify-content-center {
+  display: flex;
+  align-self: center;
+  width: 100%;
+}
+.full-width .lead.emoji-picker-container {
+  width: 300px;
+  display: block;
+}
+.full-width .lead.emoji-picker-container input {
+  width: 100%;
+  height: 50px;
+}
+</style>
+<body>
+
+
+    
+
+
+    <!--Emojis are unicodes, so it wont have much problem showing in the mobile or mails-->
+
+<div class="container full-width">
+    <div class="row justify-content-center">
+          <p class="lead emoji-picker-container">
+            <textarea type="textbox" data-emoji-input="unicode" class="form-control" placeholder="Input field" data-emojiable="true"></textarea>
+          </p>            
+    </div>
+</div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      >
+    </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+<script src="http://onesignal.github.io/emoji-picker/lib/js/config.js" ></script>
+<script src="http://onesignal.github.io/emoji-picker/lib/js/util.js" ></script>
+<script src="http://onesignal.github.io/emoji-picker/lib/js/jquery.emojiarea.js" ></script>
+<script src="http://onesignal.github.io/emoji-picker/lib/js/emoji-picker.js" ></script>
+
+
+    <script>
+      $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: 'http://onesignal.github.io/emoji-picker/lib/img/',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+      });
+
+    </script>
+
+
+
+</body>
+
+</html>
