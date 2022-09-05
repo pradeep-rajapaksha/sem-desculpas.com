@@ -73,41 +73,45 @@
 	<div class="term-and-condition">
 	    <h2>Terms & Conditions</h2>
 
-	    <div class="tc-box">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia feugiat
-                mollis. Morbi finibus et libero sit amet rutrum. Phasellus volutpat quam eget odio
-                rhoncus gravida. Donec posuere est vel purus elementum, vel auctor urna dapibus.
-                Morbi vel lacus nisi. Pellentesque viverra lacus facilisis lectus maximus accumsan.
-                Donec mattis enim augue, eu ultrices eros elementum a. Nunc ultricies massa turpis,
-                ut tempor nibh dictum sit amet. Pellentesque habitant morbi tristique senectus et
-                netus et malesuada fames ac turpis egestas. Morbi a auctor turpis. Maecenas sed
-                accumsan urna. Vestibulum iaculis velit sed ornare sodales. Class aptent taciti
-                sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-            </p>
+	    <form action="{{ route('classes.builder.submit.next') }}" method="post" id="classes-builder-submit-form" enctype="multipart/form-data">
+	    	@csrf
+	    	
+		    <div class="tc-box">
+	            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia feugiat
+	                mollis. Morbi finibus et libero sit amet rutrum. Phasellus volutpat quam eget odio
+	                rhoncus gravida. Donec posuere est vel purus elementum, vel auctor urna dapibus.
+	                Morbi vel lacus nisi. Pellentesque viverra lacus facilisis lectus maximus accumsan.
+	                Donec mattis enim augue, eu ultrices eros elementum a. Nunc ultricies massa turpis,
+	                ut tempor nibh dictum sit amet. Pellentesque habitant morbi tristique senectus et
+	                netus et malesuada fames ac turpis egestas. Morbi a auctor turpis. Maecenas sed
+	                accumsan urna. Vestibulum iaculis velit sed ornare sodales. Class aptent taciti
+	                sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+	            </p>
 
-            <p>
-                Nulla semper cursus justo eget scelerisque. Vestibulum ultrices, velit in imperdiet
-                blandit, metus velit aliquam ante, in pellentesque leo felis id velit. Aenean id
-                tortor vitae mi venenatis tempus. Etiam laoreet ultrices nunc, id ornare quam
-                blandit ac. Vivamus id augue at lorem malesuada tincidunt a sit amet nunc. Donec
-                viverra eget leo vitae malesuada. Fusce id justo est. Sed semper pulvinar laoreet.
-                Suspendisse vitae diam ut dui tempor aliquam id at lorem. Fusce id laoreet tellus,
-                at vehicula felis. Sed auctor ultrices sapien imperdiet iaculis. Nam rhoncus nibh
-                enim, sed dictum justo venenatis eu. Donec porta libero dictum, mattis tortor at,
-                egestas risus. Aenean viverra, ipsum ac laoreet fermentum, felis tortor vestibulum
-                augue, non ullamcorper nibh lacus sit amet justo. Sed mollis nulla a eleifend
-                elementum.
-            </p>
+	            <p>
+	                Nulla semper cursus justo eget scelerisque. Vestibulum ultrices, velit in imperdiet
+	                blandit, metus velit aliquam ante, in pellentesque leo felis id velit. Aenean id
+	                tortor vitae mi venenatis tempus. Etiam laoreet ultrices nunc, id ornare quam
+	                blandit ac. Vivamus id augue at lorem malesuada tincidunt a sit amet nunc. Donec
+	                viverra eget leo vitae malesuada. Fusce id justo est. Sed semper pulvinar laoreet.
+	                Suspendisse vitae diam ut dui tempor aliquam id at lorem. Fusce id laoreet tellus,
+	                at vehicula felis. Sed auctor ultrices sapien imperdiet iaculis. Nam rhoncus nibh
+	                enim, sed dictum justo venenatis eu. Donec porta libero dictum, mattis tortor at,
+	                egestas risus. Aenean viverra, ipsum ac laoreet fermentum, felis tortor vestibulum
+	                augue, non ullamcorper nibh lacus sit amet justo. Sed mollis nulla a eleifend
+	                elementum.
+	            </p>
 
-        	<div class="form-group form-check">
-	            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-	            <label class="form-check-label" for="exampleCheck1">I agree</label>
-          	</div>
-        </div>
+	        	<div class="form-group form-check">
+		            <input type="checkbox" class="form-check-input" name="agree" id="agreeCheck">
+		            <label class="form-check-label" for="agreeCheck">I agree</label>
+	          	</div>
+	        </div>
+	    </form>
 
 	    <div class="btn-grp-pr">
 	        <a href="{{ route('classes.builder.record') }}" class="btn-back"> Back</a>
-	        <a type="submit" href="{{ route('classes.builder.index') }}" class="btn-next"><img src="{{ asset('img/next-icon.svg') }}"> Next</a>
+	        <button onclick="$('#classes-builder-submit-form').submit();" type="submit" href="{{ route('classes.builder.submit.next') }}" class="btn-next"><img src="{{ asset('img/next-icon.svg') }}"> Next</button>
 	    </div>
 	</div>
 @stop

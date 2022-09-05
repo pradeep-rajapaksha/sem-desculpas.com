@@ -47,7 +47,8 @@ return [
              *
              */
             'credentials' => [
-                'file' => env('FIREBASE_CREDENTIALS', env('GOOGLE_APPLICATION_CREDENTIALS')),
+                'file' => base_path('.firebase/sem-desculpas-1dcb9-firebase-adminsdk-ecor4-92798f0c69.json'),
+                // 'file' => env('FIREBASE_CREDENTIALS', env('GOOGLE_APPLICATION_CREDENTIALS')),
 
                 /*
                  * If you want to prevent the auto discovery of credentials, set the

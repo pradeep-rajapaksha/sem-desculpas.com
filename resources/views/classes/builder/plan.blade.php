@@ -65,36 +65,83 @@
 	<!-- End of time line bar  -->
 
 	<div class="plan-class">
-	    <div class="accordion" id="accordionExample">
-	        <div class="card">
-	            <div class="card-header">
-	                <h3 class="head-title"><img src="{{ asset('img/section-list-item.svg') }}"> Section 01</h3>
+		<form action="{{ route('classes.builder.plan.next') }}" method="post" id="classes-builder-plan-form">
+	    	@csrf
+		    <div class="accordion" id="accordionExample">
+		        <div class="card">
+		            <div class="card-header">
+		                <h3 class="head-title"><img src="{{ asset('img/section-list-item.svg') }}"> Section 01</h3>
 
-	                <div class="btn-grp">
-	                    <a href="" class="delete-btn-icon">
-	                        <img src="{{ asset('img/icon-delete.svg') }}">
-	                    </a>
-	                    <button class="btn btn-dropdwn" type="button" data-toggle="collapse"
-	                        data-target="#section1" aria-expanded="true">
-	                        <img src="{{ asset('img/icon-drop-dow.svg') }}">
-	                    </button>
-	                </div>
-	            </div>
+		                <div class="btn-grp">
+		                    <a href="" class="delete-btn-icon">
+		                        <img src="{{ asset('img/icon-delete.svg') }}">
+		                    </a>
+		                    <button class="btn btn-dropdwn" type="button" data-toggle="collapse"
+		                        data-target="#section1" aria-expanded="true">
+		                        <img src="{{ asset('img/icon-drop-dow.svg') }}">
+		                    </button>
+		                </div>
+		            </div>
 
-	            <div id="section1" class="collapse show" data-parent="#accordionExample">
-	                <div class="card-body">
-	                    <form>
+		            <div id="section1" class="collapse show" data-parent="#accordionExample">
+		                <div class="card-body">
+	                        <div class="form-row">
+	                            <div class="form-group col-md-12 {{ $errors->has('name') ? ' has-error' : '' }}">
+	                                <label>Section Name</label>
+					            	<input type="text" class="form-control" id="name" name="name[]" value="{{old('name')}}">
+					            	<small class="text-danger">{{ $errors->first('name') }}</small>
+	                            </div>
+	                        </div>
+
+	                        <div class="form-row">
+	                            <div class="form-group col-md-12 {{ $errors->has('description') ? ' has-error' : '' }}">
+					              	<label >Section Description</label>
+					              	<textarea class="form-control" id="description" name="description[]" rows="3">{{old('description')}}</textarea>
+					              	<small class="text-danger">{{ $errors->first('description') }}</small>
+					            </div>
+	                        </div>
+
+	                        <div class="form-row">
+	                            <div class="form-group col-md-6">
+	                                <label>Section Time (mins)</label>
+	                                <select id="time" name="time[]" class="form-control">
+	                                    <option {{ old('time') == '20' ? 'selected' : ''}}>20</option>
+	                                    <option {{ old('time') == '30' ? 'selected' : ''}}>30</option>
+	                                </select>
+	                            </div>
+	                        </div>
+		                </div>
+		            </div>
+		        </div>
+
+		        <div class="card">
+		            <div class="card-header">
+		                <h3 class="head-title"><img src="{{ asset('img/section-list-item.svg') }}"> Section 02</h3>
+
+		                <div class="btn-grp">
+		                    <a href="" class="delete-btn-icon">
+		                        <img src="{{ asset('img/icon-delete.svg') }}">
+		                    </a>
+		                    <button class="btn btn-dropdwn" type="button" data-toggle="collapse"
+		                        data-target="#section2" aria-expanded="true">
+		                        <img src="{{ asset('img/icon-drop-dow.svg') }}">
+		                    </button>
+		                </div>
+		            </div>
+
+		            <div id="section2" class="collapse " data-parent="#accordionExample">
+		                <div class="card-body">
 	                        <div class="form-row">
 	                            <div class="form-group col-md-12">
-	                                <label>Class Name</label>
-	                                <input type="text" class="form-control" id="classname">
+	                                <label>Section Name</label>
+	                                <input type="text" class="form-control" name="name[]" id="classname">
 	                            </div>
 	                        </div>
 
 	                        <div class="form-row">
 	                            <div class="form-group col-md-12">
 	                                <label>Section Description </label>
-	                                <textarea class="form-control" id="exampleFormControlTextarea1"
+	                                <textarea class="form-control" name="description[]" id="exampleFormControlTextarea1"
 	                                    rows="3"></textarea>
 	                            </div>
 	                        </div>
@@ -102,74 +149,27 @@
 	                        <div class="form-row">
 	                            <div class="form-group col-md-6">
 	                                <label>Section Time (mins)</label>
-	                                <select id="" class="form-control">
+	                                <select name="time[]" id="" class="form-control">
 	                                    <option selected>20</option>
 	                                    <option>30</option>
 	                                </select>
 	                            </div>
 	                        </div>
-	                    </form>
-	                </div>
-	            </div>
-	        </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
 
-	        <div class="card">
-	            <div class="card-header">
-	                <h3 class="head-title"><img src="{{ asset('img/section-list-item.svg') }}"> Section 02</h3>
+		    <!-- start of add new section section  -->
+		    <div class="new-class-add">
+		        <a href="#"><img src="{{ asset('img/icon-add-section.svg') }}"> Add new section </a>
+		    </div>
+		    <!-- End of add new section section  -->
 
-	                <div class="btn-grp">
-	                    <a href="" class="delete-btn-icon">
-	                        <img src="{{ asset('img/icon-delete.svg') }}">
-	                    </a>
-	                    <button class="btn btn-dropdwn" type="button" data-toggle="collapse"
-	                        data-target="#section2" aria-expanded="true">
-	                        <img src="{{ asset('img/icon-drop-dow.svg') }}">
-	                    </button>
-	                </div>
-	            </div>
-
-	            <div id="section2" class="collapse " data-parent="#accordionExample">
-	                <div class="card-body">
-	                    <form>
-	                        <div class="form-row">
-	                            <div class="form-group col-md-12">
-	                                <label>Class Name</label>
-	                                <input type="text" class="form-control" id="classname">
-	                            </div>
-	                        </div>
-
-	                        <div class="form-row">
-	                            <div class="form-group col-md-12">
-	                                <label>Section Description </label>
-	                                <textarea class="form-control" id="exampleFormControlTextarea1"
-	                                    rows="3"></textarea>
-	                            </div>
-	                        </div>
-
-	                        <div class="form-row">
-	                            <div class="form-group col-md-6">
-	                                <label>Section Time (mins)</label>
-	                                <select id="" class="form-control">
-	                                    <option selected>20</option>
-	                                    <option>30</option>
-	                                </select>
-	                            </div>
-	                        </div>
-	                    </form>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-
-	    <!-- start of add new section section  -->
-	    <div class="new-class-add">
-	        <a href="#"><img src="{{ asset('img/icon-add-section.svg') }}"> Add new section </a>
-	    </div>
-	    <!-- End of add new section section  -->
-
-	    <div class="btn-grp-pr">
-	        <a href="{{ route('classes.builder.summary') }}" class="btn-back"> Back</a>
-	        <a type="submit" href="{{ route('classes.builder.music') }}" class="btn-next"><img src="{{ asset('img/next-icon.svg') }}"> Next</a>
-	    </div>
+		    <div class="btn-grp-pr">
+		        <a href="{{ route('classes.builder.plan') }}" class="btn-back"> Back</a>
+		        <button onclick="$('#classes-builder-plan-form').submit();" type="submit" href="{{ route('classes.builder.music') }}" class="btn-next"><img src="{{ asset('img/next-icon.svg') }}"> Next</button>
+		    </div>
+		</form>
 	</div>
 @stop

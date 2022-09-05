@@ -1,12 +1,12 @@
 @extends('layouts.default')
 
 @section('page-heading-content')
-	@include('partials.page-heading', ['title' => 'Class Builder', 
+	@include('partials.page-heading', ['title' => 'Class Builder',
 		'breadcrumb' => [
             array('label' => 'Home', 'link' => '#'),
             array('label' => 'Class Builder', 'link' => '#'),
             array('label' => 'Record Voice', 'link' => ''),
-			], 
+			],
 		'buttons' => [
 			array('label' => 'Discrade', 'classes' => 'btn-discrade', 'link' => route('classes.builder.index'), 'icon' => asset('img/discrade-icon.svg')),
 			array('label' => 'Save', 'classes' => 'btn-save', 'link' => '', 'icon' => asset('img/save-icon.svg'))
@@ -68,65 +68,217 @@
 	</div>
 	<!-- End of time line bar  -->
 
+	@php $musicData = request()->session()->get('class-builder-music-data') ?? []; @endphp
+	@php $planData = request()->session()->get('class-builder-plan-data') ?? []; @endphp
+
 	<div class="record-voice-class-section">
 	    <h2>Record Voice</h2>
 
         <div class="record-run-time">
             <h3>Total Time</h3>
-            <h4> <img src="{{ asset('img/record-running-icon.svg') }}"> 02:23:00</h4>
+            <h4> <img src="{{ asset('img/record-running-icon.svg') }}" id="btn-recording" class=""> <span class="total-record-timer">00:00:00</span></h4>
         </div>
 
-        <div class="record-box">
-            <div class="rec-body">
-                <div class="rec-head">
-                    <h2>Section 01</h2>
-                    <div class="btn-grp">
-                        <a   class="btn-recording"> Recording</a>
-                        <h3>02:23:00</h3>
-                    </div>
-                </div>
+        <form action="{{ route('classes.builder.record.next') }}" method="post" id="classes-builder-record-form" enctype="multipart/form-data">
+        	@csrf
 
-                <h4><img src="{{ asset('img/icon-clock.svg') }}"> 3 mins</h4>
-            </div>
+	        @foreach ($planData as $key => $plan)
+	        	<div class="record-box section-record-box" data-time="{{ $plan['time'] }}">
+		            <div class="rec-body">
+		                <div class="rec-head">
+		                    <h2>{{ $plan['name'] ?? 'Section' }}</h2>
+		                    <div class="btn-grp">
+		                        <a class="btn-recording d-none" data-length="">Recording</a>
+		                        {{-- <h3 >{{ @gmdate("H:i:s", $plan['time']*60) ?? "00:00:00"}}</h3> --}}
+		                        <h3 class="section-record-timer-{{$key}}">00:00:00</h3>
+		                    </div>
+		                </div>
 
-            <div class="progress">
-                <div class="progress-bar bar-rec" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-        </div>
+		                <h4><img src="{{ asset('img/icon-clock.svg') }}"> {{ $plan['time'] ?? '00' }} mins</h4>
+		                <p>{{ $plan['description'] ?? '' }}</p>
+		            </div>
 
-        <div class="record-box">
-            <div class="rec-body">
-                <div class="rec-head">
-                    <h2>Section 01</h2>
-                    <h3>02:23:00</h3>
-                </div>
-
-                <h4><img src="{{ asset('img/icon-clock.svg') }}"> 3 mins</h4>
-            </div>
-
-            <div class="progress">
-                <div class="progress-bar bar-rec" role="progressbar" style="width: 95%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-        </div>
-
-        <div class="record-box">
-            <div class="rec-body">
-                <div class="rec-head">
-                    <h2>Section 01</h2>
-                    <h3>02:23:00</h3>
-                </div>
-
-                <h4><img src="{{ asset('img/icon-clock.svg') }}"> 3 mins</h4>
-            </div>
-
-            <div class="progress">
-                <div class="progress-bar bar-rec" role="progressbar" style="width: 55%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-        </div>
+		            <div class="progress">
+		                <div class="progress-bar bar-rec section-progress-bar-{{$key}}" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+		            </div>
+		        </div>
+	        @endforeach
+	        <input type="file" class="" name="audio-track" id="audio-track" />
+        </form>
 
 	    <div class="btn-grp-pr">
 	        <a href="{{ route('classes.builder.music') }}" class="btn-back"> Back</a>
-	        <a type="submit" href="{{ route('classes.builder.submit') }}" class="btn-next"><img src="{{ asset('img/next-icon.svg') }}"> Next</a>
+	        <button onclick="$('#classes-builder-record-form').submit();" type="submit" href="{{ route('classes.builder.submit') }}" class="btn-next"><img src="{{ asset('img/next-icon.svg') }}"> Next</button>
 	    </div>
 	</div>
+
+<p>
+@if($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+@endif
+</p>
+
+	<script src="{{ asset('js/jquery.slim.min.js') }}"></script>
+	<script src="{{ asset('js/record-audio.js') }}"></script>
+	<script type="text/javascript">
+        $(document).ready(function() {
+	        var musicData = @php echo @json_encode($musicData); @endphp;
+	        var planData = @php echo @json_encode($planData); @endphp;
+	        var recorder;
+	        @php
+	        	$totalTimeMin = @array_sum(array_map(function($section) {
+		                                $time = class_time_in_seconds($section['time']);
+		                                return $time;
+		                            }, $planData)) ?? 0;
+	        	// $totalTimeSec = gmdate("H:i:s", $totalTimeMin*60);
+	        @endphp
+	        var recordingTimerMin = "@php echo $totalTimeMin; @endphp";
+	        var recordingTimerSec = "@php echo $totalTimeMin*60; @endphp";
+
+	        var recordingTimer = 0; var totalRecordingTimerId;
+	        var totalRecordingTimer = function () {
+	        	let __time = new Date(recordingTimer * 1000).toISOString().slice(11, 19);
+			  	$('.total-record-timer').text(__time);
+			  	recordingTimer ++;
+	        }
+
+	        var sectionRecordingTimer = function () {
+	        	console.log('sectionRecordingTimer')
+	        	return new Promise((resolve, reject) => {
+		        	$('.section-record-box').each(function(index) {
+						(function(that, i) {
+							let _timerSec = $(that).data('time');
+				            setTimeout(function() {
+				                console.log($(that), i, _timerSec * 1000 * i)
+				                // console.log($(that), i)
+				        		let _runTimer = setInterval(function() {
+						        		if(_timerSec == 0) {
+						        			clearInterval(_runTimer);
+						        		}
+				        				console.log('section-record-box', index, _timerSec)
+
+					        			let __time = new Date(_timerSec * 1000).toISOString().slice(11, 19);
+						        		$(that).find('.section-record-timer').text(__time);
+						        		_timerSec--;
+					        		}, 1000);
+				            }, _timerSec * 1000 * i);
+				        })(this, index);
+		        	})
+		        	// resolve()
+	        	})
+	        }
+
+			$(document).on('click', '#btn-recording', function(event) {
+				event.preventDefault();
+
+				let totalTime = 0
+				let planTime = planData.reduce((n, {time}) => n + time*1, 0) // *60
+				let sessionTimes = planData.map(({time}) => time)
+				console.log(sessionTimes)
+			  	let sessionTimer = 'section-record-timer-0'
+			  	let sessionProgress = 'section-progress-bar-0'
+
+				let _runTimer = setInterval(async () => {
+
+					let __time = new Date(totalTime * 1000).toISOString().slice(11, 19)
+			  		$('.total-record-timer').text(__time)
+
+			  		if(!recorder) {
+						recorder = await recordAudio();
+                        let r_state = recorder.start();
+						console.log('start', r_state);
+						$('.record-run-time img').attr('src', '{{ asset('img/record-stop-icon.svg') }}')
+						$('.record-run-time img').addClass('recording')
+			  		}
+
+			  		// await sessionTimes.find((time, index) => {
+			  		// 	if(time == totalTime) {
+			  		// 		console.log(time, index)
+			  		// 		sessionTimer = `section-record-timer-${index}`
+			  		// 		sessionProgress = `section-progress-bar-${index}`
+			  		// 	}
+			  		// })
+			  		// console.log(sessionTimer)
+			  		// $(`.${sessionTimer}`).text(__time);
+			  		// $(`.${sessionProgress}`).css('width', 50)
+
+					if(totalTime === planTime) {
+						if(recorder) {
+							recorder.stop().then((output) => {
+								console.log(output)
+					 			file = new File([output.audioBlob], 'recording.mp3', {
+										    type: output.audioBlob.type,
+										});
+					 			// $('input[name="audio-track"]').val(file);
+					 			// console.log(file)
+					 			const fileInput = document.getElementById('audio-track'); $('input[name="audio-track"]'); //
+					 			// console.log(fileInput)
+								const dataTransfer = new DataTransfer()
+								dataTransfer.items.add(file)
+								fileInput.files = dataTransfer.files
+					 			// console.log(fileInput)
+							})
+							recorder = null;
+						}
+						clearInterval(_runTimer)
+					}
+
+					totalTime++
+				}, 1000)
+
+
+
+				// console.log(planData.reduce((n, {time}) => n + time*1, 0))
+
+				// 	// recorder = await recordAudio();
+				// 	// recorder.start();
+				// 	// $('.record-run-time img').attr('src', '{{ asset('img/record-stop-icon.svg') }}')
+				// 	// $('.record-run-time img').addClass('recording')
+				// 	// totalRecordingTimerId = setInterval(totalRecordingTimer, 1000);
+
+				// sessionRecoded = 0;
+				// planData.map((session, index) => {
+				// 	let _timerSec = session.time ?? 0;
+				// 	let _timeout = planData[index-1]?.time ?? 0;
+
+				// 	setTimeout(() => {
+				// 		let _runTimer = setInterval(() => {
+				// 				if(_timerSec == 0) {
+				// 					clearInterval(_runTimer)
+				// 				}
+				// 				console.log('section-record-box', index, _timerSec)
+
+				// 				let __time = new Date(_timerSec * 1000).toISOString().slice(11, 19);
+				// 			        		$(`.section-record-timer-${index}`).text(__time);
+				// 			        		_timerSec--;
+				// 			}, 1000)
+				// 	}, _timeout * 1000)
+				// 	console.log('1')
+				// 	sessionRecoded++
+
+				// 	if(sessionRecoded === planData.lenght) {
+
+				// 		console.log('2')
+				// 	}
+				// })
+
+
+				// (async () => {
+				//   recorder = await recordAudio();
+				//   recorder.start();
+				//   $('.record-run-time img').attr('src', '{{ asset('img/record-stop-icon.svg') }}')
+				//   $('.record-run-time img').addClass('recording')
+				//   totalRecordingTimerId = setInterval(totalRecordingTimer, 1000);
+
+				//   sectionRecordingTimer()
+				//   	.then(() => {
+				//   		console.log('done')
+				//   	})
+				//   	.catch((err) => {
+				//   		console.log('err: ', err)
+				//   	})
+				// })();
+			})
+		});
+	</script>
 @stop

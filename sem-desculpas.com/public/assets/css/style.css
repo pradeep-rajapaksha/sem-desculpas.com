@@ -1,0 +1,1690 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+/* general layout class styles  */
+
+
+.breadcrumb-item+.breadcrumb-item::before {
+  float: left;
+  padding-right: .5rem;
+  color: #B1B1B1;
+  content: ">" !important;
+}
+
+.breadcrumb-item a {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #B1B1B1;
+}
+
+.breadcrumb {
+  background-color: transparent !important;
+  padding: 0px !important
+}
+
+.breadcrumb .active {
+  color: #B1B1B1 !important;
+}
+
+.btn-create-class {
+
+  background: #84F39E;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  float: right;
+  margin-top: 10px;
+}
+
+.btn-create-class:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+.top-box .btn-grp {
+  display: flex;
+  float: right;
+}
+
+.btn-save {
+
+  background: #84F39E;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  float: right;
+  margin-top: 10px;
+}
+
+.btn-save:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+.btn-discrade {
+
+  background: white;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  float: right;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.btn-discrade:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+.btn-upload {
+
+  background: #84F39E;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  float: right;
+
+  margin-left: auto;
+}
+
+.btn-upload:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+.btn-next {
+
+  background: #84F39E;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  float: right;
+
+  margin-left: auto;
+}
+
+.btn-next:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+
+.btn-recording {
+
+  background: #FF6565;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  float: right;
+
+  margin-left: auto;
+}
+
+.btn-recording:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+.btn-goto-class {
+
+  background: white;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+
+  border: solid #000 1px;
+
+}
+
+.btn-goto-class:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+
+.btn-back {
+
+  background: white;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-RIGHT: auto;
+
+}
+
+.btn-back:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+
+.btn-play {
+
+  background: white;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-RIGHT: auto;
+
+}
+
+.btn-play:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+
+.btn-publish-status {
+
+  background: transparent;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  float: right;
+
+  border: solid 2px #000000;
+  border-radius: 0px;
+}
+
+.btn-publish-status:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+
+.btn-pending-status {
+
+  background: transparent;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  float: right;
+
+  border: solid 2px #000000;
+  border-radius: 0px;
+}
+
+.btn-pending-status:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+.btn-draft-status {
+
+  background: transparent;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  float: right;
+
+  border: solid 2px #000000;
+  border-radius: 0px;
+}
+
+.btn-draft-status:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+.btn-date {
+
+  background: transparent;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+
+
+}
+
+.btn-date:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+
+.btn-clock {
+
+  background: transparent;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+
+
+}
+
+.btn-clock:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+
+.btn-beg-stage {
+
+  background: transparent;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+
+
+}
+
+.btn-beg-stage:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+
+.btn-mindfulness {
+
+  background: transparent;
+  color: #000000;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+
+
+}
+
+.btn-mindfulness:hover {
+  text-decoration: none;
+  color: #000;
+
+}
+
+
+.btn-details-status img {
+  width: 5px;
+  margin-left: 20px;
+  margin-top: 12px;
+}
+
+.icon-pub {
+  margin-right: 15px;
+
+}
+
+.active-lnk {
+
+  background: url('../img/icon-active.svg') no-repeat;
+
+  background-size: 100%;
+  background-size: 10px 34px;
+
+}
+
+.container-fluid {
+  padding-left: 0px !important;
+
+}
+
+/* end layout class styles  */
+
+/* ******************************************************************************************* */
+/* start styles of left menu section  */
+
+.left-menu-col {
+  padding-right: 0px !important;
+  background-color: #0E0E0E;
+
+}
+
+.main .left-menu {
+
+  background-color: #0E0E0E;
+  height: 100vh;
+
+
+}
+
+.main .left-menu .header-logo-box .img-box {
+  padding: 20px 10px 20px 10px;
+  width: 180px;
+  height: auto;
+}
+
+.main .left-menu .header-logo-box .img-box img {
+
+  width: 100%;
+  height: 100%;
+}
+
+.main .left-menu .menu a {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
+  margin-bottom: 17px;
+
+}
+
+.main .left-menu .menu .menu-icon {
+  margin-right: 10px;
+  margin-left: 25px;
+}
+
+/* ****************************************************************************** */
+/* left menu bottom-box styles  */
+.main .left-menu .bottom-box {
+
+  position: fixed;
+  bottom: 10px !important;
+  margin-left: 35px;
+
+}
+
+.main .left-menu .bottom-box .ad-box .img-box {
+  width: 280px;
+}
+
+.main .left-menu .bottom-box .ad-box .img-box img {
+
+  width: 100%;
+  height: auto;
+}
+
+.lang-icon img {
+
+
+  width: 100px;
+}
+
+.language-box {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.language-box .nav-link {
+  display: block;
+  padding: .5rem 1rem;
+  border: solid 1px #737070 !important;
+  border-radius: 8px;
+}
+
+.language-box a {
+  color: white !important;
+}
+
+.language-box .show {
+  background-color: transparent;
+  border: solid 1px #737070 !important;
+  border-radius: 8px;
+  width: 100% !important;
+
+}
+
+.language-box .show a {
+  color: white !important;
+}
+
+.language-box .dropdown-item:focus,
+.dropdown-item:hover {
+  color: #16181b !important;
+  text-decoration: none !important;
+  background-color: #000 !important;
+}
+
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-right: .255em;
+  vertical-align: .255em;
+  content: "";
+  border-top: .3em solid;
+  border-right: .3em solid transparent;
+  border-bottom: 0;
+  border-left: .3em solid transparent !important;
+  float: right !important;
+  margin-top: 10px !important;
+}
+
+/* end styles of left menu section  */
+
+/* **************************************************************************** */
+
+/* strat of right content styles  */
+.right-menu-col {
+
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.top-box {
+
+  background: #ECECEC;
+  padding: 15px 25px;
+
+}
+
+.top-box h2 {
+
+  font-family: 'Roboto Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #0E0E0E;
+
+}
+
+
+/* end of right content styles  */
+
+/* ************************************************************** */
+
+
+/* start of right content body section styles */
+.main-body {
+  padding: 50px 40px;
+}
+
+.class-box {
+  background-color: #ECECEC;
+  padding: 27px 30px;
+  margin-top: 25px;
+}
+
+.class-box .cls-top {
+  display: flex;
+}
+
+.class-box .cls-top h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #0E0E0E;
+}
+
+.class-box .btn-box {
+  margin-left: auto;
+  display: flex;
+}
+
+.class-box p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+
+  /* or 21px */
+
+  font-family: 'Roboto', sans-serif;
+  color: #53616B;
+  margin-top: 10px;
+}
+
+/* end of right content body section styles */
+
+
+/* ******************************************************************************** */
+/* *************************************************************************************** *
+****************************************************************************************/
+
+/* start of class builder summary page styles  */
+.top-process-bar-box {
+  position: relative;
+  width: 100%;
+}
+
+.time-line {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+  top: -27px;
+}
+
+.time-line .time-box {
+  text-align: center;
+  width: 20%;
+}
+
+.line-time {
+  position: relative;
+  width: 79%;
+  height: 1px;
+  background-color: #ECECEC;
+  z-index: 1;
+  margin-top: 29px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.line-time-black {
+  position: relative;
+  width: 21%;
+  height: 1px;
+  background-color: #3E3434;
+  z-index: 1;
+
+  margin-right: auto;
+  left: 120px;
+}
+
+.time-line .time-box h4 {
+
+
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  color: #000000;
+  margin-top: 10px;
+}
+
+.time-active {
+  background-color: white !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  border: solid 1px #0c0c0c;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.inner-time {
+  background: #ECECEC;
+
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+
+.time-finished-active {
+  background-color: white !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  border: solid 1px #84F39E;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.inner-finished-active {
+  background: #84F39E;
+
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.time-finished-active img {
+  width: 23px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.time-active img {
+  width: 23px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.time-unactive {
+  background-color: white !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  border: solid 1px #ECECEC;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.inner-untime {
+  background: #ECECEC;
+
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+
+.form-box {
+
+  background: #ECECEC;
+  padding: 35px 35px 50px 35px;
+
+}
+
+
+.form-box .btn-grp {
+
+  display: flex;
+}
+
+.form-box h2 {
+
+
+  font-weight: 500;
+  font-size: 20px;
+
+  margin-bottom: 35px;
+  color: #0E0E0E;
+
+
+}
+
+
+.progress {
+  display: -ms-flexbox;
+  display: flex;
+  height: 1px !important;
+  overflow: hidden;
+  line-height: 0;
+  font-size: .75rem;
+  background-color: #e9ecef;
+  border-radius: .25rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 83%;
+}
+
+.black-bar {
+  background-color: black;
+}
+
+.green-bar {
+  background-color: #84F39E;
+}
+
+
+/* End of class builder summary page styles  */
+
+
+/* ****************************************************************  */
+/* ************************************************************* */
+
+
+/* start of plan your class page styles  */
+.plan-class {
+  margin-top: 50px;
+}
+
+.plan-class .card {
+  margin-bottom: 35px;
+  border: 0px !important;
+  border-radius: 0px !important;
+  background-color: #ececec;
+}
+
+.plan-class .card-header {
+  border: none !important;
+  background-color: #ececec !important;
+  display: flex;
+  padding: 21px 24px;
+}
+
+.plan-class .btn-grp {
+  display: flex;
+  margin-left: auto;
+}
+
+.plan-class .btn-dropdwn {
+  padding: 0px !important;
+  height: auto;
+  margin-left: 20px;
+}
+
+.plan-class .btn-dropdwn img {
+  margin-top: -7px;
+  width: 11px;
+}
+
+.btn.focus,
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0, 0, 0, 0) !important;
+}
+
+.plan-class .card-header h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #0E0E0E;
+}
+
+.plan-class .head-title img {
+  width: 23px;
+  margin-top: -2px;
+}
+
+.plan-class .delete-btn-icon img {
+  width: 20px;
+}
+
+.new-class-add a {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000;
+  text-decoration: none;
+}
+
+.new-class-add {
+  text-align: center;
+  border: 2px #ececec dashed;
+  padding: 25px 20px;
+}
+
+.new-class-add img {
+
+  margin-right: 10px;
+}
+
+.plan-class .btn-grp-pr {
+  margin-top: 35px;
+  display: flex;
+}
+
+/* end of plan your class styles  */
+
+/* ************************************************************************* */
+/* ************************************************************************* */
+/* ***************************************************************************** */
+
+/* start of add music page styles  */
+
+.class-music-section {
+  margin-top: 40px;
+}
+
+.class-music-section h2 {
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #0E0E0E;
+}
+
+.class-music-section .spootify-search-box {
+  margin-top: 30px;
+  color: white;
+  background-color: black;
+  padding: 25px 25px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.class-music-section .spootify-search-box .head-title {
+  display: flex;
+  margin-left: auto;
+  text-align: center;
+  margin-right: auto;
+  width: fit-content;
+  margin-bottom: 25px;
+  margin-top: 15px;
+}
+
+.class-music-section .spootify-search-box .head-title h2 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 19px;
+  margin-right: 20px;
+}
+
+.class-music-section .spootify-search-box .head-title img {
+  margin-top: -5px;
+}
+
+.class-music-section .spootify-search-box .btn-search {
+  background-color: white !important;
+  border-radius: 0px !important;
+}
+
+.class-music-section .spootify-search-box .form-control {
+  border: none !important;
+  border-radius: 0px !important;
+
+}
+
+.class-music-section .head {
+  display: flex;
+}
+
+.class-music-section .track-box {
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #ECECEC;
+  padding: 30px 25px;
+}
+
+.class-music-section .track-box .head h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #0E0E0E;
+}
+
+.class-music-section .head .btn-grp {
+  display: flex;
+  margin-left: auto;
+}
+
+.class-music-section .head .btn-grp .btn-dropdwn {
+  margin-left: 15px;
+}
+
+.class-music-section .head .btn-grp .delete-btn-icon img {
+  margin-right: 20px;
+  margin-top: 12px;
+}
+
+.class-music-section .track-box .body-track {
+
+  padding-left: 30px;
+}
+
+.class-music-section .track-box .body-track h4 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 14px;
+
+  color: #000000;
+}
+
+.class-music-section .track-box .body-track h5 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.class-music-section .track-box .body-track h6 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 14px;
+
+  color: #000000a9;
+}
+
+.class-music-section .btn-grp-pr {
+  margin-top: 50px;
+}
+
+/* End of add music page styles */
+
+
+/* start of record voice page styles */
+
+.record-voice-class-section h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #0E0E0E;
+  margin-top: 40px;
+
+}
+
+
+.record-voice-class-section .record-run-time {
+  text-align: right;
+  margin-left: auto;
+  margin-bottom: 25px;
+}
+
+.record-voice-class-section .record-run-time h3 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+
+  /* identical to box height */
+
+  color: #0E0E0E;
+}
+
+.record-voice-class-section .record-run-time h4 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 34px;
+  line-height: 150%;
+
+  /* identical to box height, or 54px */
+
+  color: #000000;
+}
+
+.record-voice-class-section .record-run-time img {
+  width: 40px;
+}
+
+.record-voice-class-section .record-box {
+  background-color: #ECECEC;
+  margin-top: 25px;
+  margin-bottom: 25px;
+
+}
+
+.record-voice-class-section .record-box .rec-body {
+  padding: 30PX 25px;
+}
+
+.record-voice-class-section .record-box .rec-head {
+  display: flex;
+
+}
+
+.record-voice-class-section .record-box .rec-head h2 {
+  text-align: left;
+  margin-right: auto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  margin-top: 0px !important;
+}
+
+.record-voice-class-section .record-box .rec-head .btn-grp {
+  display: flex;
+}
+
+.record-voice-class-section .record-box .rec-head .btn-grp .btn-recording {
+  margin-top: -7px;
+  margin-right: 15px;
+}
+
+.record-voice-class-section .record-box .rec-head h3 {
+  text-align: right;
+  margin-left: auto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.record-voice-class-section .record-box h4 {
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.record-voice-class-section .record-box .progress {
+
+  height: 3px !important;
+
+  background-color: #000;
+
+  width: 100% !important;
+  padding: 0px !important;
+}
+
+.record-voice-class-section .record-box .progress .bar-rec {
+
+  background-color: #84F39E !important;
+}
+
+/* End of record voice page styles */
+
+
+/* start of terms and conditions page styles  */
+
+.term-and-condition {
+
+  padding: 40px 25px;
+}
+
+
+/* end of terms and conditions page styles  */
+
+
+/* start of live class styles page  */
+
+.analytic-box {
+  display: flex;
+  background-color: black;
+  padding: 20px 25px 15px 25px;
+  width: 100%;
+}
+
+.analytic-box .info-box {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  color: #FFFFFF;
+}
+
+.analytic-box .info-box {
+  width: 20%;
+}
+
+.analytic-box .info-box h3 {
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+
+
+  color: #FFFFFF;
+}
+
+.analytic-box .info-box img {
+  margin-right: 15px;
+}
+
+.analytic-box .info-box h5 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+
+  /* clr 01 */
+  color: #84F39E;
+
+}
+
+/* End of live class styles page  */
+
+
+/* start of leaderboard styles  */
+.leaderboard {
+  background-color: #ececec !important;
+  padding: 20px 15px;
+}
+
+.leaderboard h4 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #0E0E0E;
+}
+
+.leaderboard .nav-pills {
+  border-bottom: solid 2px black;
+  margin-bottom: 25px;
+}
+
+.leaderboard .nav-item a {
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+
+  color: #7e7e7e !important;
+
+
+}
+
+
+.leaderboard .nav-pills .nav-link.active,
+.leaderboard .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: transparent;
+  color: black !important;
+  border-bottom: solid 2px #84F39E;
+  border-radius: 0px !important;
+  position: relative;
+  z-index: 118;
+  margin-bottom: -10px;
+}
+
+.leaderboard .board-box {
+  display: flex;
+  padding: 5px 15px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.leaderboard .board-box h1 {
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: right;
+  color: #7e7e7e !important;
+}
+
+
+.leaderboard .board-box h3 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.leaderboard .board-box h5 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 19px;
+
+  /* identical to box height */
+  margin-left: auto;
+  color: #000000;
+}
+
+.leaderboard .board-box .icon {
+
+  width: 55px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.leaderboard .board-box .icon img {
+
+  width: 100%;
+  margin-top: -15px;
+}
+
+.leaderboard .tab-content {
+  height: 600px;
+  overflow-y: auto;
+}
+
+/* end of leaderboard styles  */
+
+
+/* start  styles of interaction board  */
+
+
+.interaction-chat {
+  background-color: #ececec !important;
+  padding: 20px 15px;
+}
+
+.interaction-chat h4 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 23px;
+  /* margin-top: 17px; */
+  padding-left: 10px;
+  color: #0E0E0E;
+}
+
+.interaction-chat .chat-head {
+
+  border-bottom: solid 2px black;
+  margin-bottom: 25px;
+}
+
+.interaction-chat .chat-head h3 {
+
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #7e7e7e !important;
+  margin-top: 10px;
+}
+
+.interaction-chat .chat-box .incoming-mesg .head {
+
+
+  display: flex;
+
+}
+
+.interaction-chat .chat-box .incoming-mesg .head .icon {
+
+
+  width: 40px;
+
+}
+
+.interaction-chat .chat-box .incoming-mesg .head .icon img {
+
+
+  width: 100%;
+
+}
+
+.interaction-chat .chat-box .incoming-mesg .head h5 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 37px;
+  margin-left: 10px;
+  color: #000000;
+  vertical-align: middle;
+
+}
+
+.interaction-chat .chat-box .incoming-mesg .head h6 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+
+  vertical-align: middle;
+  /* identical to box height */
+  margin-left: 10px;
+
+  margin-top: 12px;
+  color: #626262
+}
+
+.interaction-chat .chat-box .incoming-mesg .body {
+
+  background-color: white;
+  border-radius: 25px;
+  padding: 10px 20px;
+  width: fit-content;
+  border-radius: 0px 15px 15px 15px;
+  margin-left: 53px;
+}
+
+.interaction-chat .chat-box .incoming-mesg .body p {
+
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+
+  color: #0c0c0c
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0rem !important;
+}
+
+
+.interaction-chat .chat-box .outgoing-mesg {
+  margin-top: 10px;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.interaction-chat .chat-box .outgoing-mesg .head {
+
+
+  display: flex;
+
+}
+
+.interaction-chat .chat-box .outgoing-mesg .head .icon {
+
+
+  width: 40px;
+
+}
+
+.interaction-chat .chat-box .outgoing-mesg .head .icon img {
+
+
+  width: 100%;
+
+}
+
+.interaction-chat .chat-box .outgoing-mesg .head h5 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 37px;
+  margin-right: 10px;
+  color: #000000;
+  vertical-align: middle;
+
+}
+
+.interaction-chat .chat-box .outgoing-mesg .head h6 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+
+  vertical-align: middle;
+  /* identical to box height */
+  margin-right: 10px;
+
+  margin-top: 12px;
+  color: #626262
+}
+
+.interaction-chat .chat-box .outgoing-mesg .body {
+
+  background-color: white;
+  border-radius: 25px;
+  padding: 10px 20px;
+  width: fit-content;
+  border-radius: 15px 0px 15px 15px;
+  margin-left: 53px;
+}
+
+.interaction-chat .chat-box .outgoing-mesg .body p {
+
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+
+  color: #0c0c0c
+}
+
+.interaction-chat .chat-box {
+  height: 606px;
+  overflow-y: auto;
+}
+
+/* end styles of interaction board  */
+
+
+/* start styles of chat-with coach  */
+.chat-with-coach .search-coach input {}
+
+.chat-with-coach .search-coach .search-bar .form-control {
+  border-radius: 0px !important;
+  border-color: #000 !important;
+}
+
+.chat-with-coach .search-coach .search-bar .form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #000 !important;
+  outline: 0;
+  box-shadow: 0 0 0 .0rem rgba(255, 255, 255, 0);
+}
+
+.chat-with-coach .search-coach .search-bar .btn-search {
+
+  border-radius: 0px !important;
+}
+
+.chat-with-coach .search-coach .search-bar .btn-search {
+  border-radius: 0px !important;
+  background-color: black;
+  color: white !important;
+  font-size: 15px;
+}
+
+
+.chat-with-coach .search-coach .search-results-box .results {
+
+  display: flex;
+  margin-top: 25px;
+}
+
+.chat-with-coach .search-coach .search-results-box .results .icon {
+  width: 55px;
+}
+
+.chat-with-coach .search-coach .search-results-box .results .icon img {
+  width: 100%;
+}
+
+.chat-with-coach .search-coach .search-results-box .results .txt {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.chat-with-coach .search-coach .search-results-box .results .txt h2 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+  /* identical to box height */
+
+  color: #000000;
+
+}
+
+.chat-with-coach .search-coach .search-results-box .results .txt h4 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+
+  /* identical to box height */
+
+  /* clr 03 */
+  color: #6e6e6e;
+
+}
+
+.chat-with-coach .search-coach {
+  background-color: #ececec !important;
+  padding: 20px 15px;
+}
+
+.chat-with-coach .search-coach .search-results-box {
+
+  height: 600px;
+  overflow-y: auto;
+}
+
+.chat-with-coach .interaction-chat .chat-head {
+  display: flex;
+  border-bottom: 0px !important;
+}
+
+
+.chat-with-coach .interaction-chat .chat-head .icon {
+  width: 55px;
+}
+
+.chat-with-coach .interaction-chat .chat-head .icon img {
+  width: 100%;
+}
+
+.chat-with-coach .interaction-chat .chat-head .txt {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.chat-with-coach .interaction-chat .chat-head .txt h2 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+  /* identical to box height */
+
+  color: #000000;
+
+}
+
+.chat-with-coach .interaction-chat .chat-head .txt h4 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+
+  /* identical to box height */
+
+  /* clr 03 */
+  color: #6e6e6e;
+  padding-left: 0px !important;
+}
+
+
+.chat-with-coach .interaction-chat .chat-head .go-to-class-button {
+  margin-left: auto;
+  margin-top: 15px;
+}
+
+
+.chat-with-coach .interaction-chat .chat-box .outgoing-mesg .body {
+  background-color: black;
+
+  color: white !important;
+}
+
+.chat-with-coach .interaction-chat .chat-box .outgoing-mesg .body p {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #fff2f2;
+}
+
+
+.chat-with-coach .interaction-chat .submit-bar .form-control {
+  border-radius: 0px !important;
+  border-color: #000 !important;
+}
+
+.chat-with-coach .interaction-chat .submit-bar .form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #000 !important;
+  outline: 0;
+  box-shadow: 0 0 0 .0rem rgba(255, 255, 255, 0);
+}
+
+.chat-with-coach .interaction-chat .submit-bar .btn-search {
+
+  border-radius: 0px !important;
+}
+
+.chat-with-coach .interaction-chat .submit-bar .btn-search {
+  border-radius: 0px !important;
+  background-color: black;
+  color: #84F39E !important;
+  font-size: 15px;
+}
+
+.chat-with-coach .interaction-chat .chat-box {
+  height: 518px !important;
+  overflow-y: auto;
+}
+
+/* end styles of chat-with coach  */
+
+.chat-with-admin .admin-left .head {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chat-with-admin .admin-left .head h4 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  margin-left: 15px;
+  /* clr 03 */
+  color: #000000;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.chat-with-admin .admin-left .head img {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-right: 20px !important;
+}
+
+
+.chat-with-admin .admin-left p {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: rgb(66, 66, 66);
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  /* or 21px */
+  text-align: center;
+}
