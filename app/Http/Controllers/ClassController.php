@@ -114,7 +114,7 @@ class ClassController extends Controller
             $file = $request->file('music-track');
 
             $session_id = $request->session()->get('spotify-auth-data')['session_id'] ?? session()->getId();
-            $destination = storage_path('app/public/temp/'.$session_id.'/');
+            $destination = public_path('temp/'.$session_id.'/');
             $file->move($destination, $file->getClientOriginalName());
 
             $fileUrl = url('temp/'.session()->getId().'/' . $file->getClientOriginalName());
@@ -147,7 +147,7 @@ class ClassController extends Controller
             $file = $request->file('audio-track');
 
             $session_id = $request->session()->get('spotify-auth-data')['session_id'] ?? session()->getId();
-            $destination = storage_path('app/public/temp/'.$session_id.'/');
+            $destination = public_path('temp/'.$session_id.'/');
             $file->move($destination, $file->getClientOriginalName());
 
             $fileUrl = url('temp/'.session()->getId().'/' . $file->getClientOriginalName());
@@ -168,16 +168,15 @@ class ClassController extends Controller
 
     public function builderSubmit(Request $request)
     {
+        $summaryData = $request->session()->get('class-builder-summary-data') ?? null;
+        $planData = $request->session()->get('class-builder-plan-data') ?? null;
+        $musicData = $request->session()->get('class-builder-music-data') ?? null;
+        $recordData = $request->session()->get('class-builder-record-data') ?? null;
         // dd($request->session());
         if($request->isMethod('post')) {
             $validated = $request->validate([
                     'agree' => 'required|accepted',
                 ]);
-
-            $summaryData = $request->session()->get('class-builder-summary-data') ?? null;
-            $planData = $request->session()->get('class-builder-plan-data') ?? null;
-            $musicData = $request->session()->get('class-builder-music-data') ?? null;
-            $recordData = $request->session()->get('class-builder-record-data') ?? null;
 
             if(!($summaryData && $planData && $musicData && $recordData) Or
                 ["name", "description", "category", "difficulty", "musicStyle"] != array_keys(array_filter($summaryData)) Or
@@ -197,8 +196,8 @@ class ClassController extends Controller
                     // 'http://127.0.0.1:8000/temp/Yp6xrILUsAcIbrP27g2Ai2ZNekpRwt3GtjKDITkl/recording.mp3'
                 ])
                 ->export()
-                ->concatWithoutTranscoding()
-                ->save(storage_path('app/public/temp/').$request->session()->getId().'/mixed.mp3');
+                // ->concatWithoutTranscoding()
+                ->save(public_path('temp/').$request->session()->getId().'/mixed.webm');
 
             // $data = \FFMpeg::fromDisk('local')
             //         ->open([
@@ -208,16 +207,16 @@ class ClassController extends Controller
             //             // 'temp/bcJ8vGXmPWE5YYtZTgsfHrB5BQF3xOqo0bEKOns8/recording.mp3'
             //         ])
             //         ->export()
-            //         ->concatWithoutTranscoding()
-            //         ->save(storage_path('app/public/temp/').$request->session()->getId().'/mixed.mp3');
+            //         // ->concatWithoutTranscoding()
+            //         ->save(public_path('temp/').$request->session()->getId().'/mixed.mp3');
 
             // dd($request->session(), $data);
 
-            // $path = storage_path('app/public').'/temp/v8hmb6ly6kclDt7P8DjQb9ehNvabA9nm0bBguuWP/recording.mp3';
-            // $path1 = storage_path('app/public').'/temp/v8hmb6ly6kclDt7P8DjQb9ehNvabA9nm0bBguuWP/Ed Sheeran - Shape Of You (GHOSTT Remix).mp3';
+            // $path = public_path().'/temp/v8hmb6ly6kclDt7P8DjQb9ehNvabA9nm0bBguuWP/recording.mp3';
+            // $path1 = public_path().'/temp/v8hmb6ly6kclDt7P8DjQb9ehNvabA9nm0bBguuWP/Ed Sheeran - Shape Of You (GHOSTT Remix).mp3';
             // $mp3 = new mp3($path);
 
-            // $newpath = storage_path('app/public').'/temp/v8hmb6ly6kclDt7P8DjQb9ehNvabA9nm0bBguuWP/concat.mp3';
+            // $newpath = public_path().'/temp/v8hmb6ly6kclDt7P8DjQb9ehNvabA9nm0bBguuWP/concat.mp3';
             // $mp3->striptags();
 
             // $mp3_1 = new mp3($path1);
@@ -229,7 +228,7 @@ class ClassController extends Controller
             // $stored = Storage::disk('public')->put($newpath, $mp3->exportStr());
             // dd($stored);
         }
-        // dd($request->session());
-        return view('classes.builder.submit');
+
+        return view('classes.builder.submit', compact('musicData', 'recordData'));
     }
 }

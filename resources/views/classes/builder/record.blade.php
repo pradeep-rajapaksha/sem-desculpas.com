@@ -206,7 +206,7 @@
 						if(recorder) {
 							recorder.stop().then((output) => {
 								console.log(output)
-					 			file = new File([output.audioBlob], 'recording.mp3', {
+					 			file = new File([output.audioBlob], 'recording.webm', {
 										    type: output.audioBlob.type,
 										});
 					 			// $('input[name="audio-track"]').val(file);

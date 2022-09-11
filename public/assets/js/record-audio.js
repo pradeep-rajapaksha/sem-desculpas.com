@@ -13,9 +13,12 @@ const recordAudio = () =>
     const stop = () =>
       new Promise(resolve => {
         mediaRecorder.addEventListener("stop", () => {
-          const audioBlob = new Blob(audioChunks, {"type": "audio/mp3; codecs=opus"});
+          const audioBlob = new Blob(audioChunks, {"type": "audio/webm; codecs=opus"});
+          console.log('audioBlob >>> ', audioBlob);
           const audioUrl = URL.createObjectURL(audioBlob);
           const audio = new Audio(audioUrl);
+            const myStream = mediaRecorder.stream;
+            console.log(myStream);
           const play = () => audio.play();
           resolve({ audioBlob, audioUrl, play });
         });
@@ -26,7 +29,7 @@ const recordAudio = () =>
       });
 
     // const pause = () => mediaRecorder.pause();
-    const pause = () => 
+    const pause = () =>
       new Promise(resolve => {
         if(mediaRecorder.state === "recording") {
           mediaRecorder.pause();
@@ -35,7 +38,7 @@ const recordAudio = () =>
       });
 
     // const resume = () => mediaRecorder.resume();
-    const resume = () => 
+    const resume = () =>
       new Promise(resolve => {
         if(mediaRecorder.state === "paused") {
           mediaRecorder.resume();

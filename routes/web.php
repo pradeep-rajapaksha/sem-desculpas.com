@@ -32,7 +32,7 @@ Route::get('/', [ClassController::class, 'index']);
 
 Route::group(['prefix'=>'classes'], function(){
     Route::get('/', [ClassController::class, 'index'])->name('classes.builder.index');
-    
+
     Route::get('summary', [ClassController::class, 'builderSummary'])->name('classes.builder.summary');
     Route::post('summary/next', [ClassController::class, 'builderSummary'])->name('classes.builder.summary.next');
 
