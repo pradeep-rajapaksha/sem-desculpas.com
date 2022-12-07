@@ -1,12 +1,12 @@
 @extends('layouts.default')
 
 @section('page-heading-content')
-	@include('partials.page-heading', ['title' => 'Class Builder', 
+	@include('partials.page-heading', ['title' => 'Class Builder',
 		'breadcrumb' => [
             array('label' => 'Home', 'link' => '#'),
             array('label' => 'Class Builder', 'link' => '#'),
             array('label' => 'Submit', 'link' => ''),
-			], 
+			],
 		'buttons' => [
 			array('label' => 'Discrade', 'classes' => 'btn-discrade', 'link' => route('classes.builder.index'), 'icon' => asset('img/discrade-icon.svg')),
 			array('label' => 'Submit', 'classes' => 'btn-save', 'link' => '', 'icon' => asset('img/save-icon.svg'))
@@ -50,11 +50,11 @@
 	        </div>
 
 	        <div class="time-box">
-	            <div class="time-active">
-                    <div class="inner-time">
-                        <img src="{{ asset('img/icon-flag-next.svg') }}">
-                    </div>
-                </div>
+	            <div class="time-finished-active">
+                    <div class="inner-finished-active">
+	                    <img src="{{ asset('img/icon-flag-next.svg') }}">
+	                </div>
+	            </div>
 	            <h4>Record Voice</h4>
 	        </div>
 
@@ -75,7 +75,7 @@
 
 	    <form action="{{ route('classes.builder.submit.next') }}" method="post" id="classes-builder-submit-form" enctype="multipart/form-data">
 	    	@csrf
-	    	
+
 		    <div class="tc-box">
 	            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lacinia feugiat
 	                mollis. Morbi finibus et libero sit amet rutrum. Phasellus volutpat quam eget odio
@@ -114,4 +114,35 @@
 	        <button onclick="$('#classes-builder-submit-form').submit();" type="submit" href="{{ route('classes.builder.submit.next') }}" class="btn-next"><img src="{{ asset('img/next-icon.svg') }}"> Next</button>
 	    </div>
 	</div>
+
+    @php
+    // dd($musicData, $recordData);
+    @endphp
+	<script src="{{ asset('js/jquery.slim.min.js') }}"></script>
+<script>
+    // $(document).ready(function() {
+    //     $(document).on('click', '#agreeCheck', function(event) {
+    //         event.preventDefault();
+    //         console.log('check box click trigger...')
+
+    //         let uris = ['http://127.0.0.1:8000/temp/714I9sRSYRdOW7uyOijieW6ItGq7QI6AtmAZGtxB/Ed Sheeran - Shape Of You (GHOSTT Remix).mp3', 'http://127.0.0.1:8000/temp/714I9sRSYRdOW7uyOijieW6ItGq7QI6AtmAZGtxB/recording.mp3'],
+    //             proms = uris.map(uri => fetch(uri).then(r => r.blob()));
+
+    //         console.log('uris > ', uris)
+    //         console.log('proms > ', proms)
+
+    //         Promise.all(proms).then(blobs => {
+    //             let blob = new Blob([blobs[0], blobs[1]]),
+    //                 blobUrl = URL.createObjectURL(blob),
+    //                 audio = new Audio(blobUrl);
+
+    //                 console.log('blobUrl > ', blobUrl)
+    //                 console.log('audio > ', audio)
+
+    //             audio.play();
+    //         });
+    //     });
+    // });
+</script>
+
 @stop

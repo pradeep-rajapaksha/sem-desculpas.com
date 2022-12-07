@@ -10,6 +10,8 @@ use App\Models\MusicType;
 use App\Http\Resources\ClassResource;
 use App\Http\Helpers\mp3;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class ClassController extends Controller
 {
@@ -115,9 +117,10 @@ class ClassController extends Controller
 
             $session_id = $request->session()->get('spotify-auth-data')['session_id'] ?? session()->getId();
             $destination = public_path('temp/'.$session_id.'/');
-            $file->move($destination, $file->getClientOriginalName());
+            $filename = 'music-track.'.$file->getClientOriginalExtension(); // $file->getClientOriginalName();
+            $file->move($destination, $filename);
 
-            $fileUrl = url('temp/'.session()->getId().'/' . $file->getClientOriginalName());
+            $fileUrl = url('temp/'.session()->getId().'/' . $filename);
             $validated = array_merge($validated, ['music-track' => $fileUrl]);
 
             $request->session()->put('class-builder-music-data', $validated);
@@ -148,9 +151,10 @@ class ClassController extends Controller
 
             $session_id = $request->session()->get('spotify-auth-data')['session_id'] ?? session()->getId();
             $destination = public_path('temp/'.$session_id.'/');
-            $file->move($destination, $file->getClientOriginalName());
+            $filename = 'audio-recording.'.$file->getClientOriginalExtension(); // $file->getClientOriginalName();
+            $file->move($destination, $filename);
 
-            $fileUrl = url('temp/'.session()->getId().'/' . $file->getClientOriginalName());
+            $fileUrl = url('temp/'.session()->getId().'/' . $filename);
             $validated = array_merge($validated, ['audio-track' => $fileUrl]);
 
             $request->session()->put('class-builder-record-data', $validated);
@@ -189,44 +193,27 @@ class ClassController extends Controller
 
             set_time_limit(300);
 
-            $data = \FFMpeg::openUrl([
-                    $musicData["music-track"],
-                    $recordData["audio-track"]
-                    // 'http://127.0.0.1:8000/temp/Yp6xrILUsAcIbrP27g2Ai2ZNekpRwt3GtjKDITkl/Ed Sheeran - Shape Of You (GHOSTT Remix).mp3',
-                    // 'http://127.0.0.1:8000/temp/Yp6xrILUsAcIbrP27g2Ai2ZNekpRwt3GtjKDITkl/recording.mp3'
-                ])
-                ->export()
-                // ->concatWithoutTranscoding()
-                ->save(public_path('temp/').$request->session()->getId().'/mixed.webm');
+            $session_id = $request->session()->get('spotify-auth-data')['session_id'] ?? session()->getId();
+            $destination = public_path('temp/'.$session_id.'/');
+            \Log::info('before exec() >>>>');
+            // exec('ffmpeg -y -i "'.$musicData["music-track"].'" -i "'.$recordData["audio-track"].'" -filter_complex "[0:0]volume=0.3[a];[1:0]volume=1.8[b];[a][b]amix=inputs=2:duration=longest" -c:a libmp3lame "'.$destination.'merge.mp3"', $output, $retval);
 
-            // $data = \FFMpeg::fromDisk('local')
-            //         ->open([
-            //             $recordData["audio-track"],
-            //             $musicData["music-track"],
-            //             // 'temp/bcJ8vGXmPWE5YYtZTgsfHrB5BQF3xOqo0bEKOns8/Ed Sheeran - Shape Of You (GHOSTT Remix).mp3',
-            //             // 'temp/bcJ8vGXmPWE5YYtZTgsfHrB5BQF3xOqo0bEKOns8/recording.mp3'
-            //         ])
-            //         ->export()
-            //         // ->concatWithoutTranscoding()
-            //         ->save(public_path('temp/').$request->session()->getId().'/mixed.mp3');
+            // dd($destination, 'ffmpeg -y -i "'.$musicData["music-track"].'" -i "'.$recordData["audio-track"].'" -filter_complex "[0:0]volume=0.3[a];[1:0]volume=1.8[b];[a][b]amix=inputs=2:duration=longest" -c:a libmp3lame "'.$destination.'merge.mp3"');
 
-            // dd($request->session(), $data);
+            $process = Process::fromShellCommandline('ffmpeg -y -i "'.$musicData["music-track"].'" -i "'.$recordData["audio-track"].'" -filter_complex "[0:0]volume=0.3[a];[1:0]volume=1.8[b];[a][b]amix=inputs=2:duration=longest" -c:a libmp3lame "'.$destination.'merge.mp3"');
+            $process->setTimeout(60*5);
+            $process->run();
+            if (!$process->isSuccessful()) {
+                throw new ProcessFailedException($process);
+            }
+            echo $process->getOutput();
 
-            // $path = public_path().'/temp/v8hmb6ly6kclDt7P8DjQb9ehNvabA9nm0bBguuWP/recording.mp3';
-            // $path1 = public_path().'/temp/v8hmb6ly6kclDt7P8DjQb9ehNvabA9nm0bBguuWP/Ed Sheeran - Shape Of You (GHOSTT Remix).mp3';
-            // $mp3 = new mp3($path);
+            \Log::info('after exec() >>>>');
 
-            // $newpath = public_path().'/temp/v8hmb6ly6kclDt7P8DjQb9ehNvabA9nm0bBguuWP/concat.mp3';
-            // $mp3->striptags();
-
-            // $mp3_1 = new mp3($path1);
-            // $mp3->mergeBehind($mp3_1);
-            // $mp3->striptags();
-            // $mp3->setIdv3_2('01','Track Title','Artist','Album','Year','Genre','Comments','Composer','OrigArtist','Copyright','url','encodedBy');
-            // // $mp3->save($newpath);
-
-            // $stored = Storage::disk('public')->put($newpath, $mp3->exportStr());
-            // dd($stored);
+            // if($output) {
+            //     \Log::info('output exec() >>>>');
+            //     dd($output, $retval);
+            // }
         }
 
         return view('classes.builder.submit', compact('musicData', 'recordData'));

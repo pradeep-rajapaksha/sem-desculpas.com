@@ -124,7 +124,8 @@
         $(document).ready(function() {
 	        var musicData = @php echo @json_encode($musicData); @endphp;
 	        var planData = @php echo @json_encode($planData); @endphp;
-	        var recorder;
+	        var recorder, player;
+            // console.log()
 	        @php
 	        	$totalTimeMin = @array_sum(array_map(function($section) {
 		                                $time = class_time_in_seconds($section['time']);
@@ -170,7 +171,7 @@
 
 			$(document).on('click', '#btn-recording', function(event) {
 				event.preventDefault();
-
+                sectionRecordingTimer()
 				let totalTime = 0
 				let planTime = planData.reduce((n, {time}) => n + time*1, 0) // *60
 				let sessionTimes = planData.map(({time}) => time)
@@ -184,23 +185,18 @@
 			  		$('.total-record-timer').text(__time)
 
 			  		if(!recorder) {
+
+                        if(!player) {
+                            player = new Audio(musicData['music-track']);
+                            player.play();
+                        }
+
 						recorder = await recordAudio();
                         let r_state = recorder.start();
 						console.log('start', r_state);
 						$('.record-run-time img').attr('src', '{{ asset('img/record-stop-icon.svg') }}')
 						$('.record-run-time img').addClass('recording')
 			  		}
-
-			  		// await sessionTimes.find((time, index) => {
-			  		// 	if(time == totalTime) {
-			  		// 		console.log(time, index)
-			  		// 		sessionTimer = `section-record-timer-${index}`
-			  		// 		sessionProgress = `section-progress-bar-${index}`
-			  		// 	}
-			  		// })
-			  		// console.log(sessionTimer)
-			  		// $(`.${sessionTimer}`).text(__time);
-			  		// $(`.${sessionProgress}`).css('width', 50)
 
 					if(totalTime === planTime) {
 						if(recorder) {
@@ -216,8 +212,15 @@
 								const dataTransfer = new DataTransfer()
 								dataTransfer.items.add(file)
 								fileInput.files = dataTransfer.files
-					 			// console.log(fileInput)
+					 			console.log(fileInput)
+
+                                // console.log(output.audioBlob.duration + ' seconds');
+                                //
 							})
+                            if(player) {
+                                player.pause()
+                                player = null;
+                            }
 							recorder = null;
 						}
 						clearInterval(_runTimer)
@@ -225,59 +228,6 @@
 
 					totalTime++
 				}, 1000)
-
-
-
-				// console.log(planData.reduce((n, {time}) => n + time*1, 0))
-
-				// 	// recorder = await recordAudio();
-				// 	// recorder.start();
-				// 	// $('.record-run-time img').attr('src', '{{ asset('img/record-stop-icon.svg') }}')
-				// 	// $('.record-run-time img').addClass('recording')
-				// 	// totalRecordingTimerId = setInterval(totalRecordingTimer, 1000);
-
-				// sessionRecoded = 0;
-				// planData.map((session, index) => {
-				// 	let _timerSec = session.time ?? 0;
-				// 	let _timeout = planData[index-1]?.time ?? 0;
-
-				// 	setTimeout(() => {
-				// 		let _runTimer = setInterval(() => {
-				// 				if(_timerSec == 0) {
-				// 					clearInterval(_runTimer)
-				// 				}
-				// 				console.log('section-record-box', index, _timerSec)
-
-				// 				let __time = new Date(_timerSec * 1000).toISOString().slice(11, 19);
-				// 			        		$(`.section-record-timer-${index}`).text(__time);
-				// 			        		_timerSec--;
-				// 			}, 1000)
-				// 	}, _timeout * 1000)
-				// 	console.log('1')
-				// 	sessionRecoded++
-
-				// 	if(sessionRecoded === planData.lenght) {
-
-				// 		console.log('2')
-				// 	}
-				// })
-
-
-				// (async () => {
-				//   recorder = await recordAudio();
-				//   recorder.start();
-				//   $('.record-run-time img').attr('src', '{{ asset('img/record-stop-icon.svg') }}')
-				//   $('.record-run-time img').addClass('recording')
-				//   totalRecordingTimerId = setInterval(totalRecordingTimer, 1000);
-
-				//   sectionRecordingTimer()
-				//   	.then(() => {
-				//   		console.log('done')
-				//   	})
-				//   	.catch((err) => {
-				//   		console.log('err: ', err)
-				//   	})
-				// })();
 			})
 		});
 	</script>
