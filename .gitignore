@@ -1,7 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
-!storage/app/firebase
+!/storage/app/firebase
 /storage/*.key
 /vendor
 .env
